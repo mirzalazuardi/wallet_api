@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_120525) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_142751) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token"
@@ -24,6 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_120525) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.float "balance", default: 0.0
+    t.string "ownable_type"
+    t.integer "ownable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ownable_type", "ownable_id"], name: "index_wallets_on_ownable"
   end
 
   add_foreign_key "sessions", "users"
