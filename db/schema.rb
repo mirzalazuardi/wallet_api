@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_080557) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_162158) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token"
@@ -19,11 +19,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080557) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "stock_prices", force: :cascade do |t|
+    t.integer "stock_id", null: false
+    t.float "price"
+    t.datetime "update_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_stock_prices_on_stock_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
     t.string "identifier"
-    t.string "last_price"
-    t.datetime "last_update_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_080557) do
   end
 
   add_foreign_key "sessions", "users"
+  add_foreign_key "stock_prices", "stocks"
   add_foreign_key "user_teams", "teams"
   add_foreign_key "user_teams", "users"
 end
