@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module WalletApi
   class Application < Rails::Application
+    config.autoload_paths << "#{root}/errors"
+    config.autoload_paths << "#{root}/lib"
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

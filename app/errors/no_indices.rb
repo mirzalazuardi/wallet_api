@@ -1,0 +1,1 @@
+class NoIndices < StandardError; end

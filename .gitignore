@@ -33,3 +33,5 @@
 /config/master.key
 .undodir/
 Session.vim
+
+/config/credentials/development.key

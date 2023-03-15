@@ -1,0 +1,1 @@
+class MissingKey < StandardError; end

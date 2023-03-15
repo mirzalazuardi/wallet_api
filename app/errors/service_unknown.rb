@@ -1,0 +1,1 @@
+class ServiceUnknown < StandardError; end
