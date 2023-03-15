@@ -10,13 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_142751) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_080557) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "identifier"
+    t.string "last_price"
+    t.datetime "last_update_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_teams", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_user_teams_on_team_id"
+    t.index ["user_id"], name: "index_user_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_142751) do
   end
 
   add_foreign_key "sessions", "users"
+  add_foreign_key "user_teams", "teams"
+  add_foreign_key "user_teams", "users"
 end
