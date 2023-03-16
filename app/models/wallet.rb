@@ -6,16 +6,24 @@ class Wallet < ActiveRecord::Base #ApplicationRecord
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   def deposit(amount)
-    raise 'Invalid amount' if amount < 0
+    raise InvalidAmount if amount < 0
     self.balance += amount
     save!
   end
 
   def withdraw(amount)
-    raise 'Invalid amount' if amount < 0
-    raise 'Not enough fund' if amount > balance
+    raise InvalidAmount if amount < 0
+    raise NotEnoughFund if amount > balance
 
     self.balance -= amount
     save!
+  end
+
+  def self.query(type, key)
+    raise TypeUnknown unless type.downcase.match?(/team|user|stock/)
+    field_hash = {team: :name, user: :email, stock: :identifier}
+    args = {field_hash[type.downcase.to_sym] => key}
+    resource_obj = type.capitalize.constantize.find_by(**args)
+    find_by(ownable: resource_obj)
   end
 end

@@ -1,0 +1,1 @@
+class InvalidAmount < StandardError; end

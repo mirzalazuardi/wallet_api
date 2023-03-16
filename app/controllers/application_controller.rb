@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::API
   attr_reader :current_user
+  rescue_from NotEnoughFund, with: :not_enough_fund
+  rescue_from InvalidAmount, with: :invalid_amount
+
+  def not_enough_fund
+    render json: {error: 'not enough fund'}
+  end
+
+  def invalid_amount
+    render json: {error: 'invalid amount'}
+  end
 
   def authenticate
     session_obj = Session.find_by(token: (request.headers['token']))

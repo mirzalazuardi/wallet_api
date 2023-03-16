@@ -32,7 +32,7 @@ class Dealing < ApplicationRecord
   private
 
   def check_wallet_presence
-    errors.add(:base, 'Fill source or target wallet') if source_wallet.blank? && target_wallet.present?
-    errors.add(:base, 'Cannot add source and target wallet in the same time') if source_wallet.blank? && target_wallet.present?
+    errors.add(:base, 'Fill source or target wallet') if source_wallet.blank? && target_wallet.blank?
+    errors.add(:base, 'Cannot add source and target wallet in the same time') if source_wallet.present? && target_wallet.present?
   end
 end

@@ -1,0 +1,1 @@
+class TypeUnknown < StandardError; end

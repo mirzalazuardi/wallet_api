@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
+      post 'users/deposit'
+      post 'users/withdraw'
       post 'session', to: 'session#create'
     end
   end
