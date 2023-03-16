@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'users/deposit'
       post 'users/withdraw'
+      post 'teams/deposit'
+      post 'teams/withdraw'
       post 'session', to: 'session#create'
     end
   end
