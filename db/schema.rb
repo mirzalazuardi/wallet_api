@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_162158) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_193816) do
+  create_table "dealings", force: :cascade do |t|
+    t.integer "wallet_id", null: false
+    t.integer "source_wallet_id"
+    t.integer "target_wallet_id"
+    t.float "amount"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_dealings_on_wallet_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token"
@@ -66,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_162158) do
     t.index ["ownable_type", "ownable_id"], name: "index_wallets_on_ownable"
   end
 
+  add_foreign_key "dealings", "wallets"
   add_foreign_key "sessions", "users"
   add_foreign_key "stock_prices", "stocks"
   add_foreign_key "user_teams", "teams"

@@ -1,0 +1,1 @@
+class Debit < Dealing; end
