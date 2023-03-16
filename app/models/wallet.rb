@@ -21,9 +21,10 @@ class Wallet < ActiveRecord::Base #ApplicationRecord
 
   def self.query(type, key)
     raise TypeUnknown unless type.downcase.match?(/team|user|stock/)
+    Stock.fetch_stock(key.upcase) if type.downcase == 'stock'
     field_hash = {team: :name, user: :email, stock: :identifier}
     args = {field_hash[type.downcase.to_sym] => key}
     resource_obj = type.capitalize.constantize.find_by(**args)
-    find_by(ownable: resource_obj)
+    find_or_create_by(ownable: resource_obj)
   end
 end

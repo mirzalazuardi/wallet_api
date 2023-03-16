@@ -1,0 +1,1 @@
+class WalletNotFound < StandardError; end

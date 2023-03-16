@@ -1,0 +1,1 @@
+class StockNotFound < StandardError; end
