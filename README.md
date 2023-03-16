@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+`bundle install
+rails db:drop db:create db:migrate db:seed
+rails s
 
-* Ruby version
 
-* System dependencies
+### Get Token
+`curl -X POST localhost:3000/api/v1/session -d 'email=user1@wallet.app&password=12345678'`
 
-* Configuration
+### deposit
 
-* Database creation
+`curl -X POST localhost:3000/api/v1/users/deposit -H "token: <yourtoken>" -d 'entity_type=user&entity_query=user1@wallet.app&amount=900'`
 
-* Database initialization
+`curl -X POST localhost:3000/api/v1/users/deposit -H "token: <yourtoken>" -d 'entity_type=team&entity_query=Team1&amount=900'`
 
-* How to run the test suite
+`curl -X POST localhost:3000/api/v1/users/deposit -H "token: <yourtoken>" -d 'entity_type=stock&entity_query=VEDLEQN&amount=900'`
 
-* Services (job queues, cache servers, search engines, etc.)
+### withdraw
 
-* Deployment instructions
+`curl -X POST localhost:3000/api/v1/users/withdraw -H "token: <yourtoken>" -d 'entity_type=user&entity_query=user1@wallet.app&amount=900'`
 
-* ...
+`curl -X POST localhost:3000/api/v1/users/withdraw -H "token: <yourtoken>" -d 'entity_type=team&entity_query=Team1&amount=900'`
+
+`curl -X POST localhost:3000/api/v1/users/withdraw -H "token: <yourtoken>" -d 'entity_type=stock&entity_query=VEDLEQN&amount=900'`
