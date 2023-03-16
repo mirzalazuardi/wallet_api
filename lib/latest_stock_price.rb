@@ -50,7 +50,7 @@ class LatestStockPrice
 
   def generate_url
     uri = "#{BASE_URL}#{service}"
-    uri = "#{uri}?#{query}" unless service == 'any'
+    uri = "#{uri}?#{query}" if query.present?
     @url = URI(uri)
   end
 
