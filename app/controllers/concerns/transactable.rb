@@ -28,6 +28,7 @@ module Transactable
   private
 
   def wallet
+    raise EntityQueryNotFound if params[:entity_query].blank?
     Wallet.query(params[:entity_type], params[:entity_query])
   end
 

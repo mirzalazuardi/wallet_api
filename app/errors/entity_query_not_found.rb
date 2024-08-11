@@ -1,0 +1,1 @@
+class EntityQueryNotFound < StandardError; end

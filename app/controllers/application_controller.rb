@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from InvalidAmount, with: :invalid_amount
   rescue_from WalletNotFound, with: :wallet_not_found
   rescue_from StockNotFound, with: :stock_not_found
+  rescue_from EntityQueryNotFound, with: :entity_query_not_found
 
   def not_enough_fund
     render json: {error: 'not enough fund'}
@@ -19,6 +20,10 @@ class ApplicationController < ActionController::API
 
   def invalid_amount
     render json: {error: 'invalid amount'}
+  end
+
+  def entity_query_not_found
+    render json: {error: 'invalid entity_query'}
   end
 
   def authenticate
