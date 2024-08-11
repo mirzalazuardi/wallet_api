@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
+      resources :stocks, only: [:index, :show]
       post 'users/deposit'
       post 'users/withdraw'
       post 'teams/deposit'
