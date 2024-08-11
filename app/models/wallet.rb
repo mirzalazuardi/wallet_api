@@ -27,4 +27,14 @@ class Wallet < ActiveRecord::Base #ApplicationRecord
     resource_obj = type.capitalize.constantize.find_by(**args)
     find_or_create_by(ownable: resource_obj)
   end
+
+  def ownable_response
+    if ownable_type == 'Stock'
+      ownable.slice(:identifier, :symbol, :last_price)
+    elsif ownable_type == 'Team'
+      ownable.slice(:name)
+    else
+      ownable.slice(:email)
+    end
+  end
 end

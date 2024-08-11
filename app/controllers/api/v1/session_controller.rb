@@ -6,7 +6,7 @@ class Api::V1::SessionController < ApplicationController
 
     if auth
       session = user.sessions.create!
-      render json: { token: session.token }
+      render json: { user: user, wallet: user.wallet, token: session.token }
     else
       render json: { error: 'Invalid session' }, status: :unauthorized
     end

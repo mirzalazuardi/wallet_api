@@ -10,7 +10,7 @@ module Transactable
     raise WalletNotFound if wallet.blank?
 
     render json: { balance: current_user.wallet.balance,
-                   target: wallet.ownable.to_json(only: [:email, :name, :identifier]),
+                   target: wallet.ownable_response,
                    status: 'deposit to target successfully' }
   end
 
