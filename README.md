@@ -30,3 +30,9 @@ rails s
 `curl -X POST localhost:3000/api/v1/users/withdraw -H "token: <yourtoken>" -d 'entity_type=team&entity_query=Team1&amount=900'`
 
 `curl -X POST localhost:3000/api/v1/users/withdraw -H "token: <yourtoken>" -d 'entity_type=stock&entity_query=VEDLEQN&amount=900'`
+
+### stock
+
+`curl localhost:3000/api/v1/stocks`
+
+`curl localhost:3000/api/v1/stocks/bajfinance`
