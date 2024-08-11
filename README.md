@@ -2,7 +2,12 @@
 
 ## Installation
 
-`bundle install
+rails credentials:edit
+```
+rapid_api:
+  key: yourkeyhere
+```
+bundle install
 rails db:drop db:create db:migrate db:seed
 rails s
 

@@ -10,6 +10,7 @@ class LatestStockPrice
 
   def initialize(service, query = '', key = nil)
     @service, @key, @query = service.downcase, key, query
+    @key ||= Rails.application.credentials.rapid_api[:key]
     indices_check
     service_check
     generate_url
